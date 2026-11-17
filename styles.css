@@ -95,7 +95,6 @@ a:hover {
 .nav-icon {
   width: 1.75rem;
   height: 1.75rem;
-  border-radius: 0.4rem;
 }
 
 .nav-mark:hover {
@@ -430,7 +429,6 @@ a:hover {
 .footer-brand img {
   width: 2.25rem;
   height: 2.25rem;
-  border-radius: 0.5rem;
 }
 
 .footer-meta {
