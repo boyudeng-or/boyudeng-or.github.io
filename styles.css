@@ -169,7 +169,7 @@ a:hover {
 .hero-photo {
   position: relative;
   margin: 0;
-  aspect-ratio: 1 / 1;
+  aspect-ratio: 957 / 1024;
   border-radius: 1.35rem;
   overflow: hidden;
   background: var(--paper-deep);
