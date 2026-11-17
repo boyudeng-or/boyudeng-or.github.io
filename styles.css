@@ -1,18 +1,19 @@
 :root {
-  --paper: #f3f6f5;
-  --paper-deep: #e8eeec;
-  --ink: #15201e;
-  --ink-soft: #3d4a47;
-  --muted: #6b7874;
-  --line: rgba(21, 32, 30, 0.12);
-  --teal: #0b6b63;
-  --teal-deep: #084f4a;
-  --teal-soft: #d7ebe8;
-  --accent: #0b6b63;
+  --paper: #f2f5f4;
+  --paper-deep: #e4ebe9;
+  --ink: #121c1a;
+  --ink-soft: #3a4744;
+  --muted: #6a7773;
+  --line: rgba(18, 28, 26, 0.11);
+  --teal: #0a635c;
+  --teal-deep: #074840;
+  --teal-soft: #d5ebe7;
+  --fog: #c9d6d2;
+  --bridge: #c45c3a;
   --serif: "Source Serif 4", "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
   --sans: "Outfit", "Avenir Next", "Segoe UI", sans-serif;
-  --max: 1080px;
-  --pad: clamp(1.25rem, 4vw, 2.5rem);
+  --max: 1120px;
+  --pad: clamp(1.25rem, 4vw, 2.75rem);
 }
 
 *,
@@ -29,9 +30,9 @@ body {
   margin: 0;
   color: var(--ink);
   background:
-    radial-gradient(1200px 600px at 10% -10%, rgba(11, 107, 99, 0.08), transparent 55%),
-    radial-gradient(900px 500px at 100% 0%, rgba(8, 79, 74, 0.06), transparent 50%),
-    linear-gradient(180deg, #f7faf9 0%, var(--paper) 40%, #eef3f1 100%);
+    radial-gradient(900px 480px at 88% 8%, rgba(196, 92, 58, 0.07), transparent 55%),
+    radial-gradient(1100px 560px at 8% -8%, rgba(10, 99, 92, 0.09), transparent 58%),
+    linear-gradient(180deg, #f8fbfa 0%, var(--paper) 42%, #e9f0ee 100%);
   font-family: var(--sans);
   font-weight: 400;
   line-height: 1.65;
@@ -122,18 +123,18 @@ a:hover {
 
 .hero-grid {
   display: grid;
-  grid-template-columns: minmax(0, 1.15fr) minmax(220px, 0.72fr);
-  gap: clamp(2rem, 5vw, 3.5rem);
+  grid-template-columns: minmax(0, 1.12fr) minmax(240px, 0.78fr);
+  gap: clamp(2rem, 5vw, 3.75rem);
   align-items: start;
 }
 
 .hero-name {
-  margin: 0 0 1.25rem;
+  margin: 0 0 1.35rem;
   font-family: var(--serif);
-  font-size: clamp(2.6rem, 6vw, 4.1rem);
+  font-size: clamp(2.7rem, 6.2vw, 4.25rem);
   font-weight: 600;
-  line-height: 1.05;
-  letter-spacing: -0.03em;
+  line-height: 1.04;
+  letter-spacing: -0.035em;
   color: var(--ink);
 }
 
@@ -142,9 +143,9 @@ a:hover {
 }
 
 .prose p {
-  margin: 0 0 1.05rem;
+  margin: 0 0 1.1rem;
   color: var(--ink-soft);
-  font-size: 1.05rem;
+  font-size: 1.06rem;
 }
 
 .prose p:last-child {
@@ -156,51 +157,63 @@ a:hover {
   font-weight: 600;
 }
 
-/* Photo stack with soft frame */
+/* Single portrait — crop pulled slightly downward */
 .hero-photo {
   position: relative;
-  margin: 0;
+  margin: 0.35rem 0 0;
   aspect-ratio: 4 / 5;
-  border-radius: 1.15rem;
+  border-radius: 1.35rem;
   overflow: hidden;
-  background: var(--paper-deep);
+  background:
+    linear-gradient(160deg, var(--fog), var(--paper-deep));
   box-shadow:
-    0 1px 0 rgba(255, 255, 255, 0.6) inset,
-    0 18px 40px rgba(8, 79, 74, 0.12),
-    0 4px 12px rgba(21, 32, 30, 0.06);
-  cursor: pointer;
+    0 1px 0 rgba(255, 255, 255, 0.7) inset,
+    0 22px 48px rgba(7, 72, 64, 0.14),
+    0 6px 16px rgba(18, 28, 26, 0.07);
 }
 
-.hero-photo::after {
+.hero-photo::before {
   content: "";
   position: absolute;
   inset: 0;
+  z-index: 2;
   border-radius: inherit;
-  box-shadow: inset 0 0 0 1px rgba(21, 32, 30, 0.08);
+  box-shadow:
+    inset 0 0 0 1px rgba(18, 28, 26, 0.1),
+    inset 0 -48px 56px rgba(7, 72, 64, 0.18);
   pointer-events: none;
 }
 
-.hp-img {
-  position: absolute;
-  inset: 0;
+.hero-photo img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center 18%;
-  opacity: 0;
-  transition: opacity 0.55s ease;
+  /* was ~18% (high); 42% pans the crop downward toward jacket / bridge */
+  object-position: 48% 42%;
+  transform: scale(1.02);
 }
 
-.hp-img.is-active {
-  opacity: 1;
+.hero-caption {
+  position: absolute;
+  left: 1rem;
+  bottom: 0.95rem;
+  z-index: 3;
+  margin: 0;
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(244, 250, 249, 0.92);
+  text-shadow: 0 1px 8px rgba(7, 40, 36, 0.45);
 }
 
 /* —— Connect band —— */
 .connect {
   margin: 0;
-  padding: clamp(3rem, 8vw, 5rem) var(--pad);
+  padding: clamp(3.25rem, 8vw, 5.25rem) var(--pad);
   background:
-    linear-gradient(135deg, #0b3d3a 0%, #0b6b63 48%, #0a5a54 100%);
+    radial-gradient(700px 320px at 85% 20%, rgba(196, 92, 58, 0.18), transparent 60%),
+    linear-gradient(135deg, #083532 0%, #0a635c 52%, #09554f 100%);
   color: #f4faf9;
 }
 
